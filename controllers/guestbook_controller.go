@@ -18,8 +18,9 @@ package controllers
 
 import (
 	"context"
+	"k8s.io/apimachinery/pkg/types"
+	"k8s.io/klog/v2"
 
-	"github.com/onsi/ginkgo/types"
 	"k8s.io/apimachinery/pkg/runtime"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
@@ -55,8 +56,14 @@ func (r *GuestbookReconciler) Reconcile(ctx context.Context, req ctrl.Request) (
 
 	log.Log.Info("============== reconcile loops here =============")
 	////  获取上一个资源并打印
-	//guestbook := &v1.Guestbook{}
-	//err := r.Client.Get(ctx, types.NamespacedName{"default", "guestbook-sample"}, guestbook)
+	guestbook := &v1.Guestbook{}
+	err := r.Client.Get(ctx, types.NamespacedName{Namespace: "default", Name: "guestbook-sample"}, guestbook)
+	if err != nil {
+		klog.Error(err.Error())
+		return ctrl.Result{}, err
+	}
+
+	klog.Info("ty resources: ", guestbook.Spec.Date)
 
 	return ctrl.Result{}, nil
 }

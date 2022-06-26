@@ -3,4 +3,4 @@ kind: Guestbook
 metadata:
   name: guestbook-sample
 spec:
-  date: "2022-06-27 06:00:01"
+  date: "2022-06-27 06:40:02"
