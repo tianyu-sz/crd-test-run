@@ -1,0 +1,16 @@
+domain: ty.testrun
+layout:
+- go.kubebuilder.io/v3
+projectName: crd-test-run
+repo: ty.kubebuilder.io
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: ty.testrun
+  group: webapp
+  kind: Guestbook
+  path: ty.kubebuilder.io/api/v1
+  version: v1
+version: "3"
